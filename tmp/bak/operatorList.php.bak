@@ -1,0 +1,150 @@
+<?php
+require '../service/operatorService.php';
+$operatorService=new operatorService();
+
+if (isset($_GET['sid'])) {
+	$operatorService->changeActive();	
+}
+$stds= array();
+$stds=$operatorService->getOperators();
+?>
+<script type="text/javascript">
+$(document).ready( function () {
+  $('#table_id').dataTable( {
+        "dom": 'T<"clear">lfrtip',
+        "tableTools": {
+            "sSwfPath": "swf/copy_csv_xls_pdf.swf"
+        },
+		"aoColumnDefs": [{ "bSortable": false, "aTargets": [0] }] 
+		
+    } );
+	
+	 // Remove Class For Sorting From the Table Header Select All Chceckbox 
+	 $("#td_select_all").removeClass("sorting_asc");
+
+	 // Action On Select All Checkbox	
+	
+	//select All Checkboxes to send those to Delete
+	$("#selectall").on("click",function(){
+			
+			if($("#selectall").prop("checked")){	
+				$('.chk_del_row').prop('checked', true)
+			}else{
+				$(".chk_del_row").prop("checked",false);
+			}						
+ 	}) ;
+	
+	$(".clsDeleteLink").on("click",function(){
+           if( confirmSubmit('Are you sure you want to delete all')){
+		 $("#maskActionForm").submit();
+                     }else{
+                       // return false;
+                     }				
+			// return false;
+ 	}) ;	
+	/////////////////
+} );
+</script>
+<div class="container-fluid">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="panel panel-info">
+ <div class="panel-heading" style="background-color: #428bca; color:#ffffff">
+    <h3 class="panel-title">OPERATOR LIST</h3>
+  </div>
+  <div class="panel-body">
+      <a href="operatorAdd.php" style="text-decoration:none;"><span class="glyphicon glyphicon-plus"></span>&nbsp;ADD&nbsp;&nbsp;&nbsp;</a>
+<a href="#" style="text-decoration:none;"  class="clsDeleteLink"><span class="glyphicon glyphicon-minus"></span>&nbsp;Delete All</a>
+<br>
+<br>
+
+<form method="post" id="maskActionForm" action="operatorDelete.php">
+
+<table id="table_id" class="table-condensed table-striped table-hover" width="100%">
+ 
+ <thead>   
+	<tr><td data-bSortable="false" id="td_select_all"><input type="checkbox" name="selectall" id="selectall"  /></td>
+		<th>Operator Code</th>
+		<th>Name</th>
+		<th>Active</th>
+		<th>Country</th>
+		<th>Designation</th>
+		<th>Email</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+ </thead>
+    <tbody>
+<?php 
+if((!empty($stds))){
+
+foreach($stds as $key=>$value)
+			{			 
+				$operator=$stds [$key];
+?>
+	<tr>
+	<td><input type="checkbox" id="chk_del_<?php echo $operator->id;?>" name="checkbox[]" class="chk_del_row" value="<?php echo $operator->id;?>" /></td>
+		<td><a href="operatorView.php?id=<?php echo $operator->id; ?>"><?php echo $operator->operatorcode;?></a></td>
+                <td><?php echo $operator->name;?></td>
+		 <td><?php
+                                            if ($operator->active == 1) {
+                                                //$biconOk='span class="glyphicon glyphicon-ok-circle"></span> ';
+
+                                                echo "<a href='operatorList.php?sid=$operator->active&id=$operator->id'>"
+                                                . '<span class="glyphicon glyphicon-ok-circle"></span> Active</a>';
+                                            } else {
+
+                                                echo "<a class='alert-danger' href='operatorList.php?sid=$operator->active&id=$operator->id'>"
+                                                . '<span class="glyphicon glyphicon-ban-circle" ></span> Inactive</a>';
+                                            }
+                                            ?></td>
+		<td><?php echo $operator->country;?></td>
+		<td><?php echo $operator->designation;?></td>
+                <td><?php echo $operator->email;?></td>
+		<td><a href="operatorEdit.php?id=<?php echo $operator->id;?>">  <span class="glyphicon glyphicon-pencil"></span></a></td>
+                 <td><a href="#" data-href="operatorDelete.php?id=<?php echo $operator->id; ?>" data-toggle="modal" data-target="#confirm-delete-new"> <span class="glyphicon glyphicon-trash"></span></a></td>  
+	</tr>
+<?php 
+}
+}
+?>
+   </tbody>
+</table>
+            <input type="hidden" name="id" value="null" id="id" />
+</form>
+
+</div>
+</div>
+</div>
+    
+    <!--Modal view page for confirming delete-->
+<div class="modal fade" id="confirm-delete-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog"  id="confirm-delete-new-modal">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel" style="color: #a94442"><span class="glyphicon glyphicon-warning-sign"></span> Confirm Delete</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p>Do you want to proceed?</p>
+                    <p style="color: #a94442"><em><b>Your action is irreversible.</b></em></p>
+                    <p class="debug-url"></p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger danger" style="background-color: #428bca; color:#ffffff">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script>
+        $('#confirm-delete-new').on('show.bs.modal', function(e) {
+            $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
+            
+           // $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
+        })
+    </script>
+</div>  
+<?php include '../include/footer.php';?>

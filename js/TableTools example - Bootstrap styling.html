@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<title>TableTools example - Bootstrap styling</title>
+	<link rel="stylesheet" type="text/css" href="TableTools%20example%20-%20Bootstrap%20styling_files/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="TableTools%20example%20-%20Bootstrap%20styling_files/dataTables.css">
+	<link rel="stylesheet" type="text/css" href="TableTools%20example%20-%20Bootstrap%20styling_files/shCore.css">
+	<link rel="stylesheet" type="text/css" href="TableTools%20example%20-%20Bootstrap%20styling_files/demo.css">
+	<style type="text/css" class="init">
+
+	body { font-size: 140%; }
+	div.DTTT { margin-bottom: 0.5em; float: right; }
+	div.dataTables_wrapper { clear: both; }
+
+	</style>
+	<script type="text/javascript" language="javascript" src="TableTools%20example%20-%20Bootstrap%20styling_files/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="TableTools%20example%20-%20Bootstrap%20styling_files/jquery_002.js"></script>
+	<script type="text/javascript" language="javascript" src="TableTools%20example%20-%20Bootstrap%20styling_files/dataTables.js"></script>
+	<script type="text/javascript" language="javascript" src="TableTools%20example%20-%20Bootstrap%20styling_files/dataTables_002.js"></script>
+	<script type="text/javascript" language="javascript" src="TableTools%20example%20-%20Bootstrap%20styling_files/shCore.js"></script>
+	<script type="text/javascript" language="javascript" src="TableTools%20example%20-%20Bootstrap%20styling_files/demo.js"></script>
+	<script type="text/javascript" language="javascript" class="init">
+
+
+$(document).ready(function() {
+	var table = $('#example').DataTable();
+	var tt = new $.fn.dataTable.TableTools( table );
+
+	$( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');
+} );
+
+
+	</script>
+</head>
+
+<body class="dt-example">
+	<div class="container">
+		<section>
+			<h1>TableTools example <span>Bootstrap styling</span></h1>
+
+
+			<div class="DTTT btn-group"><a id="ToolTables_example_0" class="btn btn-default DTTT_button_copy"><span>Copy</span><div style="position: absolute; left: 0px; top: 0px; width: 55px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_1" src="TableTools%20example%20-%20Bootstrap%20styling_files/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboard_TableToolsMovie_1" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=55&amp;height=31" wmode="transparent" align="middle" height="31" width="55"></div></a><a id="ToolTables_example_1" class="btn btn-default DTTT_button_csv"><span>CSV</span><div style="position: absolute; left: 0px; top: 0px; width: 50px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_2" src="TableTools%20example%20-%20Bootstrap%20styling_files/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboard_TableToolsMovie_2" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=50&amp;height=31" wmode="transparent" align="middle" height="31" width="50"></div></a><a id="ToolTables_example_2" class="btn btn-default DTTT_button_xls"><span>Excel</span><div style="position: absolute; left: 0px; top: 0px; width: 55px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_3" src="TableTools%20example%20-%20Bootstrap%20styling_files/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboard_TableToolsMovie_3" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=55&amp;height=31" wmode="transparent" align="middle" height="31" width="55"></div></a><a id="ToolTables_example_3" class="btn btn-default DTTT_button_pdf"><span>PDF</span><div style="position: absolute; left: 0px; top: 0px; width: 49px; height: 31px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_4" src="TableTools%20example%20-%20Bootstrap%20styling_files/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboard_TableToolsMovie_4" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=49&amp;height=31" wmode="transparent" align="middle" height="31" width="49"></div></a><a title="View print view" id="ToolTables_example_4" class="btn btn-default DTTT_button_print"><span>Print</span></a></div><div class="dataTables_wrapper form-inline" id="example_wrapper"><div class="row"><div class="col-xs-6"><div id="example_length" class="dataTables_length"><label><select class="form-control input-sm" aria-controls="example" name="example_length"><option selected="selected" value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> records per page</label></div></div><div class="col-xs-6"><div class="dataTables_filter" id="example_filter"><label>Search:<input aria-controls="example" class="form-control input-sm" type="search"></label></div></div></div><table style="width: 100%;" aria-describedby="example_info" role="grid" id="example" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%">
+				<thead>
+					<tr role="row"><th aria-sort="ascending" aria-label="Name: activate to sort column ascending" style="width: 148px;" colspan="1" rowspan="1" aria-controls="example" tabindex="0" class="sorting_asc">Name</th><th aria-label="Position: activate to sort column ascending" style="width: 242px;" colspan="1" rowspan="1" aria-controls="example" tabindex="0" class="sorting">Position</th><th aria-label="Office: activate to sort column ascending" style="width: 107px;" colspan="1" rowspan="1" aria-controls="example" tabindex="0" class="sorting">Office</th><th aria-label="Age: activate to sort column ascending" style="width: 49px;" colspan="1" rowspan="1" aria-controls="example" tabindex="0" class="sorting">Age</th><th aria-label="Start date: activate to sort column ascending" style="width: 102px;" colspan="1" rowspan="1" aria-controls="example" tabindex="0" class="sorting">Start date</th><th aria-label="Salary: activate to sort column ascending" style="width: 81px;" colspan="1" rowspan="1" aria-controls="example" tabindex="0" class="sorting">Salary</th></tr>
+				</thead>
+
+				<tfoot>
+					<tr><th colspan="1" rowspan="1">Name</th><th colspan="1" rowspan="1">Position</th><th colspan="1" rowspan="1">Office</th><th colspan="1" rowspan="1">Age</th><th colspan="1" rowspan="1">Start date</th><th colspan="1" rowspan="1">Salary</th></tr>
+				</tfoot>
+
+				<tbody>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				<tr class="odd" role="row">
+						<td class="sorting_1">Charde Marshall</td>
+						<td>Regional Director</td>
+						<td>San Francisco</td>
+						<td>36</td>
+						<td>2008/10/16</td>
+						<td>$470,600</td>
+					</tr><tr class="even" role="row">
+						<td class="sorting_1">Colleen Hurst</td>
+						<td>Javascript Developer</td>
+						<td>San Francisco</td>
+						<td>39</td>
+						<td>2009/09/15</td>
+						<td>$205,500</td>
+					</tr><tr class="odd" role="row">
+						<td class="sorting_1">Dai Rios</td>
+						<td>Personnel Lead</td>
+						<td>Edinburgh</td>
+						<td>35</td>
+						<td>2012/09/26</td>
+						<td>$217,500</td>
+					</tr><tr class="even" role="row">
+						<td class="sorting_1">Donna Snider</td>
+						<td>Customer Support</td>
+						<td>New York</td>
+						<td>27</td>
+						<td>2011/01/25</td>
+						<td>$112,000</td>
+					</tr><tr class="odd" role="row">
+						<td class="sorting_1">Doris Wilder</td>
+						<td>Sales Assistant</td>
+						<td>Sidney</td>
+						<td>23</td>
+						<td>2010/09/20</td>
+						<td>$85,600</td>
+					</tr><tr class="even" role="row">
+						<td class="sorting_1">Finn Camacho</td>
+						<td>Support Engineer</td>
+						<td>San Francisco</td>
+						<td>47</td>
+						<td>2009/07/07</td>
+						<td>$87,500</td>
+					</tr><tr class="odd" role="row">
+						<td class="sorting_1">Fiona Green</td>
+						<td>Chief Operating Officer (COO)</td>
+						<td>San Francisco</td>
+						<td>48</td>
+						<td>2010/03/11</td>
+						<td>$850,000</td>
+					</tr><tr class="even" role="row">
+						<td class="sorting_1">Garrett Winters</td>
+						<td>Accountant</td>
+						<td>Tokyo</td>
+						<td>63</td>
+						<td>2011/07/25</td>
+						<td>$170,750</td>
+					</tr><tr class="odd" role="row">
+						<td class="sorting_1">Gavin Cortez</td>
+						<td>Team Leader</td>
+						<td>San Francisco</td>
+						<td>22</td>
+						<td>2008/10/26</td>
+						<td>$235,500</td>
+					</tr><tr class="even" role="row">
+						<td class="sorting_1">Gavin Joyce</td>
+						<td>Developer</td>
+						<td>Edinburgh</td>
+						<td>42</td>
+						<td>2010/12/22</td>
+						<td>$92,575</td>
+					</tr></tbody>
+			</table><div class="row"><div class="col-xs-6"><div aria-live="polite" role="status" id="example_info" class="dataTables_info">Showing 11 to 20 of 57 entries</div></div><div class="col-xs-6"><div id="example_paginate" class="dataTables_paginate paging_simple_numbers"><ul class="pagination"><li id="example_previous" tabindex="0" aria-controls="example" class="paginate_button previous"><a href="#">Previous</a></li><li tabindex="0" aria-controls="example" class="paginate_button "><a href="#">1</a></li><li tabindex="0" aria-controls="example" class="paginate_button active"><a href="#">2</a></li><li tabindex="0" aria-controls="example" class="paginate_button "><a href="#">3</a></li><li tabindex="0" aria-controls="example" class="paginate_button "><a href="#">4</a></li><li tabindex="0" aria-controls="example" class="paginate_button "><a href="#">5</a></li><li tabindex="0" aria-controls="example" class="paginate_button "><a href="#">6</a></li><li id="example_next" tabindex="0" aria-controls="example" class="paginate_button next"><a href="#">Next</a></li></ul></div></div></div></div>
+
+			
+
+
+			
+			</div>
+		</section>
+	</div>
+
+
+</body></html>

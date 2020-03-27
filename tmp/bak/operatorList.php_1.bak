@@ -1,0 +1,61 @@
+<?php
+require '../service/operatorService.php';
+?>
+
+<script type="text/javascript">
+$(function () {
+    $("#list").jqGrid({
+        url: "../ajax/operatorListAjax.php",
+        datatype: "xml",
+        mtype: "GET",
+        colNames: ["Code", "Name", "Active", "country","Designation","Email"],
+        colModel: [
+            {name:'operatorcode', formatter:'showlink', formatoptions:{baseLinkUrl:'operatorEdit.php'}},
+            { name: "name", width: 80 },
+            { name: "active", width: 80 },
+            { name: "country", width: 80 },
+            { name: "designation", width: 80 },
+            { name: "email", width: 80 }
+        ],
+        pager: "#pager",
+        rowNum: 30,
+        rowList: [10, 20, 30, 50],
+        sortname: "name",
+        sortorder: "desc",
+        viewrecords: true,
+        gridview: true,
+        autoencode: true
+        
+    });
+   var DataGrid = jQuery('#list');
+   //sets the grid size initially
+ DataGrid.jqGrid('setGridWidth',800); 
+ DataGrid.jqGrid('setGridHeight',640);
+
+ //handles the grid resize on window resize
+ $(window).resize(function () { DataGrid.jqGrid('setGridWidth', 800); });
+ 
+ DataGrid.jqGrid('navGrid', '#pager', { edit: false, add: false, del: false, search: true,searchtext: "Search"});  
+   
+}); 
+</script>
+<div class="container-fluid">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="panel panel-info">
+ <div class="panel-heading" style="background-color: #428bca; color:#ffffff">
+    <h3 class="panel-title">OPERATOR LIST</h3>
+  </div>
+  <div class="panel-body">
+      <a href="operatorAdd.php" style="text-decoration:none;"><span class="glyphicon glyphicon-plus"></span>&nbsp;ADD&nbsp;&nbsp;&nbsp;</a>
+<br>
+<br>
+
+<table id="list" class="table-condensed table-striped table-hover"><tr><td></td></tr></table> 
+    <div id="pager"></div> 
+
+</div>
+</div>
+</div>
+</div>
+    
+    <?php include '../include/footer.php'; ?>

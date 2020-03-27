@@ -1,0 +1,201 @@
+<?php
+require '../service/firService.php';
+$firService = new firService();
+$stds = $firService->getFirs();
+
+?>
+<script type="text/javascript">
+$(document).ready( function () {
+  $('#table_id').dataTable( {
+        "dom": 'T<"clear">lfrtip',
+        "tableTools": {
+            "sSwfPath": "swf/copy_csv_xls_pdf.swf"
+        },
+		"aoColumnDefs": [{ "bSortable": false, "aTargets": [0] }] 
+		
+    } );
+	
+	 // Remove Class For Sorting From the Table Header Select All Chceckbox 
+	 $("#td_select_all").removeClass("sorting_asc");
+
+	 // Action On Select All Checkbox	
+	
+	//select All Checkboxes to send those to Delete
+	$("#selectall").on("click",function(){
+			
+			if($("#selectall").prop("checked")){	
+				$('.chk_del_row').prop('checked', true)
+			}else{
+				$(".chk_del_row").prop("checked",false);
+			}						
+ 	}) ;
+	
+	$(".clsDeleteLink").on("click",function(){
+           if( confirmSubmit('Are you sure you want to delete all')){
+		 $("#maskActionForm").submit();
+                     }else{
+                       // return false;
+                     }				
+			// return false;
+ 	}) ;	
+	
+	
+	
+} );
+</script>
+<div class="container-fluid">
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="panel panel-info">
+ <div class="panel-heading" style="background-color: #428bca; color:#ffffff">
+    <h3 class="panel-title">FIR LIST</h3>
+  </div>
+  <div class="panel-body">
+<a href="firAdd.php" style="text-decoration:none;"><span class="glyphicon glyphicon-plus"></span>&nbsp;ADD&nbsp;&nbsp;&nbsp;</a>
+<!-- <a href="" class="clsDeleteLink" style="text-decoration:none;"><span class="glyphicon glyphicon-minus"></span>&nbsp;DELETE ALL </a>  -->
+<a href="#" style="text-decoration:none;" class="clsDeleteLink"><span class="glyphicon glyphicon-minus"></span>&nbsp;Delete All</a>
+
+
+<br>
+<br>
+
+<form method="post" id="maskActionForm" action="../controller/firDeleteController.php">
+<table id="table_id" class="table-condensed table-striped" width="100%">
+ <thead>
+
+            <!--generate column headers-->
+            <tr>
+                 <th>Registration</th>
+                 <th>Arrival Date</th>
+                <th>Departure Date</th>
+<!--                <th>Aircraft ID</th>
+                <th>ANC</th>
+                <th>ATA</th>
+                <th>ATD</th>-->
+                <th>From</th>
+                <th>To</th>
+                <th>Route</th>
+<!--                <th>Entry Point</th>
+                <th>Exit Point</th>-->
+<!--                <th>Distance</th>-->
+               
+                <th>Call Sign</th>
+<!--                <th>Aircraft Type</th>-->
+                
+                <th>Enroute</th>
+                <th>Flight Date</th>
+<!--                <th>Landing</th>-->
+<!--                <th>Batch ID</th>-->
+<!--                <th>Charge</th>-->
+<!--                <th>Comment</th>-->
+<!--                <th>Enroute Charge</th>-->               
+<!--                <th>flightGroup</th>-->
+<!--                <th>Invoice</th>-->
+<!--                <th>Landing Charge</th>-->
+<!--                <th>Level</th>-->
+<!--                <th>Lighting Charge</th>-->
+<!--                <th>Name</th>-->
+<!--                <th>Operator FK</th>-->
+<!--                <th>Paid</th>-->
+<!--                <th>Parking Charge</th>-->
+<!--                <th>Parking Time</th>-->
+<!--                <th>RoundUp ParkTime</th>-->
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <?php
+            if ((!empty($stds))) {
+                foreach ($stds as $key => $value) {
+                    $fir = $stds [$key];
+                    ?>
+
+                    <!--generate each column data from dbase-->
+                    <tr>
+
+                        <td><a href="firView.php?id=<?php echo $fir->id; ?>"> <?php echo $fir->name; ?></a></td>
+
+<!--                        <td><?php// echo $fir->aircraftId; ?></td>
+                        <td><?php //echo $fir->anc; ?></td>
+                        
+                        <td><?php //echo $fir->ata; ?></td>
+                        <td><?php //echo $fir->atd; ?></td>-->
+                        <td><?php echo $fir->arrdate; ?></td>
+                        <td><?php echo $fir->deptdate; ?></td>
+                        <td><?php echo $fir->from_id; ?></td>
+                        <td><?php echo $fir->to_id; ?></td>
+                        <td><?php echo $fir->route_id; ?></td>
+<!--                        <td><?php //echo $fir->entryTime; ?></td>
+                        <td><?php //echo $fir->exitTime; ?></td>-->
+<!--                        <td><?php //echo $fir->batchId; ?></td>     distance-->
+<!--                        <td><?php// echo $fir->charge; ?></td>    distance-->
+                      <td><?php echo $fir->callsign; ?></td>
+<!--                        <td><?php // echo $fir->enrouteCharge; ?></td>-->
+                        <td><?php echo $fir->enroute; ?></td>
+                        <td><?php echo $fir->flightdate; ?></td>
+<!--                        <td><?php //echo $fir->landing; ?></td>-->
+<!--                        <td>//<?php //echo $fir->comment; ?></td>
+                        <td><?php// echo $fir->flightGroup; ?></td>
+                        <td><?php// echo $fir->invoiceId; ?></td>
+                        <td><?php// echo $fir->landingCharge; ?></td>
+                        <td><?php// echo $fir->level; ?></td>
+                        <td><?php// echo $fir->lightingCharge; ?></td>
+                        <td><?php// echo $fir->name; ?></td>
+                        <td><?php// echo $fir->operatorFK; ?></td>
+                        <td><?php// echo $fir->paid; ?></td>
+                        <td><?php// echo $fir->parkingCharge; ?></td>
+                        <td><?php// echo $fir->parkingTime; ?></td>
+                        <td><?php// echo $fir->roundUpParkTime; ?></td>
+                        -->
+                         <td><a href="firEdit.php?id=<?php echo $fir->id;?>">  <span class="glyphicon glyphicon-pencil"></span></a></td>
+       
+         <td><a href="#" data-href="firDelete.php?id=<?php echo $fir->id; ?>" data-toggle="modal" data-target="#confirm-delete-new"> <span class="glyphicon glyphicon-trash"></span></a></td>  
+		
+	</tr>
+<?php 
+}
+}
+?>
+   </tbody>
+</table>
+<input type="hidden" name="id" value="null" id="id" />
+</form>
+    
+</div>
+</div>
+</div>
+    <!--Modal view page for confirming delete-->
+<div class="modal fade" id="confirm-delete-new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog"  id="confirm-delete-new-modal">
+            <div class="modal-content">
+            
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel" style="color: #a94442"><span class="glyphicon glyphicon-warning-sign"></span> Confirm Delete</h4>
+                </div>
+            
+                <div class="modal-body">
+                    <p>Do you want to proceed?</p>
+                    <p style="color: #a94442"><em><b>Your action is irreversible.</b></em></p>
+                    <p class="debug-url"></p>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger danger" style="background-color: #428bca; color:#ffffff">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script>
+        $('#confirm-delete-new').on('show.bs.modal', function(e) {
+            $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
+            
+           // $('.debug-url').html('Delete URL: <strong>' + $(this).find('.danger').attr('href') + '</strong>');
+        })
+    </script>
+</div>
+</div>
+
+<?php include '../include/footer.php'; ?>

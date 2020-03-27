@@ -1,0 +1,68 @@
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB--a0iNicFy8cC9BW7_RwQ2cmIb96sLnI&sensor=true"></script>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+	  #content{
+	  	background-color:#FF0000;
+		width:250px;
+		height:150px;		
+	  }
+	  
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+// This example displays a marker at the center of Australia.
+// When the user clicks the marker, an info window opens.
+
+function initialize() {
+  var myLatlng = new google.maps.LatLng(12.363882,-12.044922);
+  var mapOptions = {
+    zoom: 4,
+    center: myLatlng
+  };
+
+
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  var contentString = '<div id="content">Location : 12.222,12.232<br>Name: Accra<br>Weather : Sunny<br>Temp:23Deg</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+  var polyline = new GPolyline([
+  new GLatLng(37.4419, -122.1419),
+  new GLatLng(37.4519, -122.1519)],
+  "#ff0000", 10);
+map.addOverlay(polyline);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
+
